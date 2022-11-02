@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+.wbg-show {
+    visibility: visible !important;
+    -webkit-animation: fadeIn 0.3s;
+    animation: fadeIn 0.3s;
+}
+
+.wbg-captcha-container {
+    margin-top: 10px;
+    width: 280px;
+    height: 30px;
+    border-radius: 6px;
+    color: #e5e5e5;
+    padding: 15px 10px 15px 20px;
+    position: relative;
+    box-sizing: unset;
+}
+
+.wbg-captcha-border {
+    border: 1px solid #212529;
+}
+
+.wbg-captcha-bg-light {
+    background-color: #e5e5e5;
+    color: #212529;
+}
+
+.wbg-captcha-bg-light .wbg-captcha-logo svg {
+    fill: #212529;
+}
+
+.wbg-captcha-bg-dark {
+    background-color: #212529;
+    color: #e5e5e5;
+}
+
+.wbg-captcha-bg-dark .wbg-captcha-logo svg {
+    fill: #e5e5e5;
+}
+
+.wbg-captcha-container .wbg-captcha-button {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+    border:none;
+}
+
+
+.wbg-captcha-container .wbg-captcha-button svg {
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+}
+
+
+.wbg-captcha-button-light {
+    background-color: #e5e5e5;
+    color: #212529;
+}
+.wbg-captcha-button-light svg {
+    fill: #212529;
+    color: #212529;
+}
+
+.wbg-captcha-button-light:active:hover:not([disabled]) {
+    opacity: 0.9;
+}
+
+.wbg-captcha-button-primary {
+    background-color: #107173;
+    color: #e5e5e5;
+}
+
+.wbg-captcha-button-primary:active:hover:not([disabled]) {
+    opacity: 0.9;
+}
+
+.wbg-captcha-button-primary svg {
+    fill: #e5e5e5;
+    color: #e5e5e5;
+}
+
+.wbg-captcha-button-dark {
+    background-color: #212529;
+    color: #e5e5e5;
+}
+
+.wbg-captcha-button-dark:active:hover:not([disabled]) {
+    opacity: 0.9;
+}
+
+.wbg-captcha-button-dark svg {
+    fill: #e5e5e5;
+}
+
+.wbg-captcha-container .wbg-captcha-text {
+    margin-left: 40px;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-family: 'Poppins', sans-serif;
+}
+
+.wbg-captcha-container .wbg-captcha-logo {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.wbg-captcha-container .wbg-captcha-logo svg {
+    transform: scale(1.5);
+}
+
+.wbg-captcha-verification-container {
+    visibility: hidden;
+    width: 320px;
+    height: 80px;
+    margin-top: -9px;
+    margin-left: 12px;
+    border-radius: 6px;
+    padding: 5px 5px 25px 5px;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.3);
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    position: absolute;
+    box-sizing: content-box;
+    z-index: 99999999;
+}
+
+.wbg-captcha-verification-container::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 10%;
+    transform: rotate(180deg);
+    margin-left: -15px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #e5e5e5 transparent transparent transparent;
+
+}
+
+.wbg-captcha-verification-container img {
+    border: none;
+    padding: 5px;
+    display: block;
+    margin: auto;
+}
+
+.wbg-captcha-verification-container input {
+    padding: 5px;
+    display: block;
+    border: none;
+    border-radius: 4px;
+    margin-left: 8px;
+    width: 45%;
+}
+
+.wbg-captcha-verification-input-container{
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    margin: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+.wbg-captcha-verification-input-container .wbg-captcha-bg-dark {
+    background-color: #2e3338;
+    color: #e5e5e5;
+}
+.wbg-captcha-verification-input-container .wbg-captcha-bg-light {
+    background-color: #dbdbdb;
+    color: #212529;
+}
+
+.wbg-captcha-verification-input-container svg{
+    margin-left: 6px;
+    width:16px;
+    cursor: pointer;
+}
+
+@-webkit-keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+.wbg-captcha-verification-input-container svg:hover{
+    -webkit-animation: rotating 2s linear infinite;
+}
+
+.wbg-captcha-verification-container input:focus {
+    outline:none;
+    opacity: 0.95;
+}
+#wbg-captcha-verification-reload {
+    cursor: pointer;
+    background-color: unset;
+    border:unset;
+    color: unset;
+}
