@@ -99,11 +99,11 @@
     <h1 class="h3 mb-3 font-weight-normal">Formularz rejestracyjny</h1>
     <div class="form-group">
         <label for="inputEmail" class="sr-only">E-mail</label>
-        <input name="email" type="email" id="inputEmail" class="form-control" placeholder="Wpisz e-mail" required="" autofocus=""/>
+        <input name="email" type="email" id="inputEmail" class="form-control" value="test@example.com" placeholder="Wpisz e-mail" required="" autofocus=""/>
     </div>
     <div class="form-group">
         <label for="inputPassword" class="sr-only">Hasło</label>
-        <input name="password" type="password" id="password" class="form-control" placeholder="Wpisz hasło" required=""/>
+        <input name="password" type="password" id="password" class="form-control" value="test1234" placeholder="Wpisz hasło" required=""/>
     </div>
     <div id="recaptcha"></div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Zarejestruj się</button>
@@ -112,11 +112,9 @@
 <script>
     new WBG_Recaptcha({
         container_id: "recaptcha",
-        type: "text",
-        public_key: "ce6bc3e1-1e01-4a6f-96c0-3901e6b41b59",
+        public_key: "293b5a57-a1d9-455c-a497-1485e86290e9",
         style: "light"
     })
-
 </script>
 
 </body>

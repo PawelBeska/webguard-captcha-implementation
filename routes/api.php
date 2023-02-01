@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/example', [\App\Http\Controllers\Controller::class, 'store'])->name('api.example');
+Route::post('/', [\App\Http\Controllers\Controller::class, 'store'])->name('api.example');

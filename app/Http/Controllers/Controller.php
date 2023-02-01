@@ -14,21 +14,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function store(Request $request)
+    public function store(Request $request): string
     {
-        /**
-         * wbg-captcha-verification-token
-         * wbg-captcha-verification-input
-         */
-        dd($this->test_composer_package($request->get('wbg-captcha-verification-token'), $request->get('wbg-captcha-verification-input')));
-    }
-
-
-
-
-
-    private function test_composer_package($token, $input): bool
-    {
-        return WebGuard::validate($token, $input);
+        return match (WebGuard::validate($request->get('wbg-captcha-verification-token'), $request->get('wbg-captcha-verification-input'))) {
+            true => 'Pomyślnie zarejestrowano',
+            false => 'Nie udało się zarejestrować'
+        };
     }
 }

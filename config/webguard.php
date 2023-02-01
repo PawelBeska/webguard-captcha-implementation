@@ -14,5 +14,6 @@ return [
 
     'public_key' => env('WEBGUARD_PUBLIC_KEY'),
     'private_key' => env('WEBGUARD_PRIVATE_KEY'),
+    'service_url' => env('WEBGUARD_SERVICE_URL','http://host.docker.internal:80'),
 
 ];

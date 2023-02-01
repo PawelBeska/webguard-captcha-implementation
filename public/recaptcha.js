@@ -1,6 +1,7 @@
 class WBG_Recaptcha {
 
     constructor(data) {
+        this.api_url = 'http://localhost:80';
         this.container = document.getElementById(data.container_id);
         this.type = data.type;
         this.public_key = data.public_key;
@@ -10,14 +11,9 @@ class WBG_Recaptcha {
 
         if (!this.container)
             throw "Container not found. Please create a container or provide a container id.";
-        if (!this.type)
-            throw "Service type not provided. Please provide a service type.";
         if (!this.public_key)
             throw "Public key not provided. Please provide a public key.";
 
-
-        if (!this.servicesTypes().includes(this.type))
-            throw `The service type ${this.type} is not supported. Please provide a supported service type.`;
 
         if (!this.styleTypes().includes(this.style))
             throw `The style type ${this.style} is not supported. Please provide a supported style type.`;
@@ -38,14 +34,14 @@ class WBG_Recaptcha {
         let reload_button = document.getElementById("wbg-captcha-verification-reload");
         reload_button.disabled = true;
         this.verification = false;
-        this.handleClick(null,true);
+        this.handleClick(null, true);
     }
 
-    handleClick = (e,reload) => {
+    handleClick = (e, reload) => {
         let button = document.getElementById("wbg-captcha-button");
-        if(this.verification)
+        if (this.verification)
             this.verification_container.classList.toggle('wbg-show')
-        if(!this.verification) {
+        if (!this.verification) {
             button.disabled = true;
             button.innerHTML = this.iconLoading();
             button.getElementsByTagName('svg')[0].animate([
@@ -54,21 +50,20 @@ class WBG_Recaptcha {
                 duration: 1000,
                 iterations: Infinity
             });
-            fetch(`https://api.webguard.pl/v1/captcha/${this.public_key}/generate`, {
+            fetch(`${this.api_url}/v1/captcha/${this.public_key}/generate`, {
                 method: "POST",
                 cache: "no-cache",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(
-                    {})
+                body: JSON.stringify({})
             })
                 .then(response => response.json())
                 .then(data => {
-                    document.getElementById("wbg-captcha-verification-token").value = data.data.token;
+                    document.getElementById("wbg-captcha-verification-token").value = data.data.verification_id;
                     if (data.data.image) {
                         button.innerHTML = this.iconVerificationIsNeeded();
-                        this.renderVerification(data.data.image, data.data.token, reload);
+                        this.renderVerification(data.data.image, data.data.verification_id, reload);
                         button.disabled = false;
                         this.verification = true;
                         document.getElementById("wbg-captcha-verification-reload").addEventListener('click', this.verificationReload);
@@ -88,8 +83,8 @@ class WBG_Recaptcha {
         }
     }
 
-    renderVerification = (image,token,reload = false) => {
-        if(!reload)
+    renderVerification = (image, token, reload = false) => {
+        if (!reload)
             this.verification_container.classList.toggle('wbg-show')
         this.verification_container.innerHTML = `
         <img alt="" src="${image}"/>
@@ -101,7 +96,6 @@ class WBG_Recaptcha {
 
 `;
     }
-
 
 
     renderInvisible = (access_token) => {
@@ -131,11 +125,8 @@ class WBG_Recaptcha {
               <div id="wbg-captcha-verification-container" class="wbg-captcha-verification-container wbg-captcha-bg-${this.second_style}" >
 
               </div>
-
-
 `;
     }
-
 
     iconCheck = () => {
         return '<svg x="0px" y="0px"  width="10.71px" height="7.98px" viewBox="0 0 10.71 7.98" xml:space="preserve"> <path d="M3.64,7.83L0.16,4.35c-0.21-0.21-0.21-0.55,0-0.76l0.76-0.76c0.21-0.21,0.55-0.21,0.76,0l2.34,2.34l5.02-5.02c0.21-0.21,0.55-0.21,0.76,0l0.76,0.76c0.21,0.21,0.21,0.55,0,0.76L4.39,7.83C4.18,8.04,3.85,8.04,3.64,7.83L3.64,7.83z"/></svg>';
@@ -151,17 +142,6 @@ class WBG_Recaptcha {
 
     iconVerificationIsNeeded = () => {
         return `<svg  role="img"  viewBox="0 0 576 512"><path fill="currentColor" d="M288 144a110.94 110.94 0 0 0-31.24 5 55.4 55.4 0 0 1 7.24 27 56 56 0 0 1-56 56 55.4 55.4 0 0 1-27-7.24A111.71 111.71 0 1 0 288 144zm284.52 97.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400c-98.65 0-189.09-55-237.93-144C98.91 167 189.34 112 288 112s189.09 55 237.93 144C477.1 345 386.66 400 288 400z"></path></svg>`;
-    }
-
-    iconSad = () => {
-
-    }
-
-
-    servicesTypes = () => {
-        return [
-            'text'
-        ];
     }
 
     styleTypes = () => {
